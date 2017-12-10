@@ -1,34 +1,129 @@
 ﻿{
-  "puzzle": {
-    "content": [
-      {
-        "ContentID": "1",
-         "question": "Prayer",
-        "answer": ",iw tzf;fk;"
-       
-      },
-      {
-         "ContentID": "2",
-         "question": "Prayer",
-        "answer": ",iw tzf;fk;"
-      },
-      {
-        "ContentID": "3",
-         "question": "Prayer",
-        "answer": ",iw tzf;fk;"
-      },
-      {
-        "ContentID": "4",
-         "question": "Prayer",
-        "answer": ",iw tzf;fk;"
-      },
-      {
-         "ContentID": "5",
-         "question": "Prayer",
-        "answer": ",iw tzf;fk;"
-      }
-     
-    
-    ]
-  }
+    "puzzle": {
+        "mode": "easy",
+        "content": [
+            {
+                "ContentID": "1",
+                "question": "e__y",
+                "answer": [
+                    {
+                        0: {
+                            "option": "a",
+                            "key": true
+                        },
+                        1: {
+                            "option": "s",
+                            "key": true
+                        },
+                        3: {
+                            "option": "t",
+                            "key": false
+                        },
+                        4: {
+                            "option": "c",
+                            "key": false
+                        }
+                    }
+                ]
+              }
+            , {
+                "ContentID": "2",
+                "question": "b__b",
+                "answer": [
+                    {
+                        0: {
+                            "option": "u",
+                            "key": true
+                        },
+                        1: {
+                            "option": "l",
+                            "key": true
+                        },
+                        3: {
+                            "option": "r",
+                            "key": false
+                        },
+                        4: {
+                            "option": "e",
+                            "key": false
+                        }
+                    }
+                ]
+              }
+            , {
+                "ContentID": "3",
+                "question": "g__n",
+                "answer": [
+                    {
+                        0: {
+                            "option": "a",
+                            "key": true
+                        },
+                        1: {
+                            "option": "i",
+                            "key": true
+                        },
+                        3: {
+                            "option": "u",
+                            "key": false
+                        },
+                        4: {
+                            "option": "t",
+                            "key": false
+                        }
+                    }
+                ]
+              }
+            , {
+                "ContentID": "4",
+                "question": "s__t",
+                "answer": [
+                    {
+                        0: {
+                            "option": "o",
+                            "key": true
+                        },
+                        1: {
+                            "option": "r",
+                            "key": true
+                        },
+                        3: {
+                            "option": "u",
+                            "key": false
+                        },
+                        4: {
+                            "option": "a",
+                            "key": false
+                        }
+                    }
+                ]
+              }
+            , {
+                "ContentID": "5",
+                "question": "l__t",
+                "answer": [
+                    {
+                        0: {
+                            "option": "o",
+                            "key": true
+                        },
+                        1: {
+                            "option": "s",
+                            "key": true
+                        },
+                        3: {
+                            "option": "e",
+                            "key": false
+                        },
+                        4: {
+                            "option": "a",
+                            "key": false
+                        }
+                    }
+                ]
+              }
+
+
+                ]
+    }
 }
