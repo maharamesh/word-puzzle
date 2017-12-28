@@ -1,129 +1,35 @@
 ﻿{
-    "puzzle": {
-        "mode": "easy",
-        "content": [
-            {
-                "ContentID": "1",
-                "question": "e__y",
-                "answer": [
-                    {
-                        0: {
-                            "option": "a",
-                            "key": true
-                        },
-                        1: {
-                            "option": "s",
-                            "key": true
-                        },
-                        3: {
-                            "option": "t",
-                            "key": false
-                        },
-                        4: {
-                            "option": "c",
-                            "key": false
-                        }
-                    }
-                ]
-              }
-            , {
-                "ContentID": "2",
-                "question": "b__b",
-                "answer": [
-                    {
-                        0: {
-                            "option": "u",
-                            "key": true
-                        },
-                        1: {
-                            "option": "l",
-                            "key": true
-                        },
-                        3: {
-                            "option": "r",
-                            "key": false
-                        },
-                        4: {
-                            "option": "e",
-                            "key": false
-                        }
-                    }
-                ]
-              }
-            , {
-                "ContentID": "3",
-                "question": "g__n",
-                "answer": [
-                    {
-                        0: {
-                            "option": "a",
-                            "key": true
-                        },
-                        1: {
-                            "option": "i",
-                            "key": true
-                        },
-                        3: {
-                            "option": "u",
-                            "key": false
-                        },
-                        4: {
-                            "option": "t",
-                            "key": false
-                        }
-                    }
-                ]
-              }
-            , {
-                "ContentID": "4",
-                "question": "s__t",
-                "answer": [
-                    {
-                        0: {
-                            "option": "o",
-                            "key": true
-                        },
-                        1: {
-                            "option": "r",
-                            "key": true
-                        },
-                        3: {
-                            "option": "u",
-                            "key": false
-                        },
-                        4: {
-                            "option": "a",
-                            "key": false
-                        }
-                    }
-                ]
-              }
-            , {
-                "ContentID": "5",
-                "question": "l__t",
-                "answer": [
-                    {
-                        0: {
-                            "option": "o",
-                            "key": true
-                        },
-                        1: {
-                            "option": "s",
-                            "key": true
-                        },
-                        3: {
-                            "option": "e",
-                            "key": false
-                        },
-                        4: {
-                            "option": "a",
-                            "key": false
-                        }
-                    }
-                ]
-              }
-
-
-                ]
-    }
+    "questions": [
+ 
+        {
+           
+            "questionText": "Capital of India?",
+            "answers": [
+                {"answer": "Delhi", "correct": true, "selected": false},
+                {"answer": "Pune", "correct": false, "selected": false},
+                {"answer": "chennai", "correct": false, "selected": false}
+            ]
+        },
+        {
+            
+            "questionText": "National animal of India?",
+            "answers": [
+                {"answer": "lion", "correct": false, "selected": false},
+                {"answer": "tiger", "correct": true, "selected": false},
+                {"answer": "deer", "correct": false, "selected": false}
+            ]
+        },
+        {
+            
+            "questionText": "National bird of India?",
+            "answers": [
+                {"answer": "Dove", "correct": false, "selected": false},
+                {"answer": "skimmer", "correct": false, "selected": false},
+                {"answer": "Peacock", "correct": true, "selected": false}
+            ]
+        }
+        
+ 
+    ],
+    "type":"Easy"
 }
