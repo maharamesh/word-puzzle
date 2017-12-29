@@ -12,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { QuestionProvider } from '../providers/question/question';
 @NgModule({
   declarations: [
     MyApp,
@@ -36,7 +37,8 @@ import 'rxjs/add/operator/toPromise';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    QuestionProvider
   ]
 })
 export class AppModule {}

@@ -1,34 +1,34 @@
 ﻿{
-  "puzzle": {
-    "content": [
-      {
-        "ContentID": "1",
-         "question": "Prayer",
-        "answer": ",iw tzf;fk;"
-       
-      },
-      {
-         "ContentID": "2",
-         "question": "Prayer",
-        "answer": ",iw tzf;fk;"
-      },
-      {
-        "ContentID": "3",
-         "question": "Prayer",
-        "answer": ",iw tzf;fk;"
-      },
-      {
-        "ContentID": "4",
-         "question": "Prayer",
-        "answer": ",iw tzf;fk;"
-      },
-      {
-         "ContentID": "5",
-         "question": "Prayer",
-        "answer": ",iw tzf;fk;"
-      }
-     
-    
-    ]
-  }
+    "questions": [
+ 
+        {
+           
+            "questionText": "Capital of India?",
+            "answers": [
+                {"answer": "Delhi", "correct": true, "selected": false},
+                {"answer": "Pune", "correct": false, "selected": false},
+                {"answer": "chennai", "correct": false, "selected": false}
+            ]
+        },
+        {
+            
+            "questionText": "National animal of India?",
+            "answers": [
+                {"answer": "lion", "correct": false, "selected": false},
+                {"answer": "tiger", "correct": true, "selected": false},
+                {"answer": "deer", "correct": false, "selected": false}
+            ]
+        },
+        {
+            
+            "questionText": "National bird of India?",
+            "answers": [
+                {"answer": "Dove", "correct": false, "selected": false},
+                {"answer": "skimmer", "correct": false, "selected": false},
+                {"answer": "Peacock", "correct": true, "selected": false}
+            ]
+        }
+ 
+    ],
+    "type":"Hard"
 }
