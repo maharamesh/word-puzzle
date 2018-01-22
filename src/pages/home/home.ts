@@ -25,6 +25,12 @@ export class HomePage {
   constructor(private http: Http, public navCtrl: NavController, public dataService: QuestionProvider,public loadingCtrl: LoadingController) {
       this.mode="Let's Play!"
   }
+    
+        saverange(val,que) {
+//        this.range = newValue;
+        console.log(val);
+        console.log(que);
+} 
  /*ionViewDidLoad() {
  
         this.slides.lockSwipes(true);
@@ -132,6 +138,8 @@ export class HomePage {
         this.slides.slideNext();
         this.slides.lockSwipes(true);
     }
+    
+
  
     selectAnswer(answer, question){
  
