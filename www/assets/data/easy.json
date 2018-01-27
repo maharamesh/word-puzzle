@@ -1,38 +1,58 @@
 ﻿{
     "questions": [
- 
+
         {
-           
-            "questionText": "F _ L L",
-            "description":"A sapce to needed to occupy!",
-            "answers": [
-                {"answer": "Fall", "correct": true, "selected": false},
-                {"answer": "Pune", "correct": false, "selected": false},
-                {"answer": "chennai", "correct": false, "selected": false}
-            ]
-        },
-        {
-            
-            "questionText": "C_OP",
-            "description":"Related to Agriculture!",
-            "answers": [
-                {"answer": "lion", "correct": false, "selected": false},
-                {"answer": "crop", "correct": true, "selected": false},
-                {"answer": "deer", "correct": false, "selected": false}
-            ]
-        },
-        {
-            
-            "questionText": "F_IP",
-            "description":"About Turn!",
-            "answers": [
-                {"answer": "Dove", "correct": false, "selected": false},
-                {"answer": "skimmer", "correct": false, "selected": false},
-                {"answer": "flip", "correct": true, "selected": false}
-            ]
+            "questionText": "Csoloh"
+            , "description": "A place to study!"
+            , "answers": "school"
         }
-        
- 
-    ],
-    "type":"Easy"
+        , {
+            "questionText": "Aerk"
+            , "description": "A cleaning tool"
+            , "answers": "rake"
+        }
+        , {
+            "questionText": "Feriaerotrr"
+            , "description": "An household appliance"
+            , "answers": "refrigerator"
+        }
+        , {
+            "questionText": "Hpneoeelt"
+            , "description": "Connecting people"
+            , "answers": "telephon"
+        }
+        , {
+            "questionText": "Appre"
+            , "description": "Something to write"
+            , "answers": "paper"
+        }
+        , {
+            "questionText": "Uhbsr"
+            , "description": "rub it to clean it"
+            , "answers": "brush"
+         }
+        , {
+            "questionText": "Amigicna"
+            , "description": "A person with superior powers"
+            , "answers": "magician"
+         }
+        , {
+            "questionText": "Soiphalt"
+            , "description": "a place for treatment"
+            , "answers": "hospital"
+        }
+        , {
+            "questionText": "Crkut"
+            , "description": "used for carrying goods"
+            , "answers": "truck"
+        }
+        , {
+            "questionText": "Macle"
+            , "description": "An animal"
+            , "answers": "camel"
+        }
+
+
+    ]
+    , "type": "Easy"
 }

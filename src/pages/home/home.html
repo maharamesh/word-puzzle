@@ -15,7 +15,7 @@
             <button ion-button color="primary" (click)="loadMedium()">Medium</button>
             <button ion-button color="primary" (click)="loadHard()">Hard</button>
         </ion-slide>
-        <ion-slide *ngFor="let question of questions; let i = index;">
+        <ion-slide *ngFor="let question of questions; let i = index; trackBy:trackByIndex">
  
             <h3>Question {{i+1}}</h3>
  
@@ -29,9 +29,9 @@
             <ion-list no-lines radio-group>
                  <ion-item>   
                 <ion-label fixed color="light">Answer - </ion-label>
-                <ion-input type="text" [(ngModel)]="range" minlength="4" (ionChange)=saverange(range,question)></ion-input>
+                <ion-input type="text" [(ngModel)]="question.ans" minlength="4" (ionChange)=checkAnswer(question.ans,question)></ion-input>
                 </ion-item>
-                
+                   
                 <!--<ion-item *ngFor="let answer of question.answers; let i = index;">
  
                     <ion-label>{{i+1}}. {{answer.answer}}</ion-label>
@@ -42,6 +42,8 @@
             </ion-list>
  
         </ion-slide>
+                      <ion-icon name="thumbs-up" *ngIf="checkStatus"></ion-icon>
+                      <ion-icon name="thumbs-down" *ngIf="checkStatusError"></ion-icon>
  
         <ion-slide>
             <h2>Final Score: {{score}}</h2>

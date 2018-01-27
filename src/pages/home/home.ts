@@ -11,7 +11,7 @@ import { LoadingController } from 'ionic-angular';
 })
 
 export class HomePage {
-
+  
   @ViewChild('slides') slides: any;
  
     hasAnswered: boolean = false;
@@ -20,16 +20,33 @@ export class HomePage {
     slideOptions: any;
     questions: any;
     mode:any;
- 
+ checkStatus:any;
+     checkStatusError:any;
     
   constructor(private http: Http, public navCtrl: NavController, public dataService: QuestionProvider,public loadingCtrl: LoadingController) {
       this.mode="Let's Play!"
+     
   }
     
-        saverange(val,que) {
+        checkAnswer(answerVal,que) {
 //        this.range = newValue;
-        console.log(val);
+        console.log(answerVal);
         console.log(que);
+        console.log(que.answers);
+        console.log(answerVal);
+            if(que.answers==answerVal)
+                {
+                    this.checkStatus=true;
+                    this.checkStatusError=false;
+//                    alert("Correct");
+                }
+            else
+                {
+                    this.checkStatusError=true;
+                    this.checkStatus=true;
+//                    alert("wrong");
+                }
+            
 } 
  /*ionViewDidLoad() {
  
