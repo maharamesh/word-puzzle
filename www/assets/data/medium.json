@@ -1,32 +1,55 @@
 ﻿{
     "questions": [
  
-        {
+        {   
            
-            "questionText": "Capital of India?",
-            "answers": [
-                {"answer": "Delhi", "correct": true, "selected": false},
-                {"answer": "Pune", "correct": false, "selected": false},
-                {"answer": "chennai", "correct": false, "selected": false}
-            ]
+            "questionText": "t p a s",
+            "answers": "past"
         },
         {
             
-            "questionText": "National animal of India?",
-            "answers": [
-                {"answer": "lion", "correct": false, "selected": false},
-                {"answer": "tiger", "correct": true, "selected": false},
-                {"answer": "deer", "correct": false, "selected": false}
-            ]
+            "questionText": "c d l o",
+            "answers":"cold"
         },
         {
             
-            "questionText": "National bird of India?",
-            "answers": [
-                {"answer": "Dove", "correct": false, "selected": false},
-                {"answer": "skimmer", "correct": false, "selected": false},
-                {"answer": "Peacock", "correct": true, "selected": false}
-            ]
+            "questionText": "n s d e",
+            "answers":"send" 
+        },
+        {
+            
+            "questionText": "y t i d",
+            "answers":"tidy" 
+        },
+        {
+            
+            "questionText": "n k i t",
+            "answers":"knit" 
+        },
+        {
+            
+            "questionText": "d e i h",
+            "answers":"hide" 
+        },
+        {
+            
+            "questionText": "a r f e",
+            "answers":"fear" 
+        },
+        {
+            
+            "questionText": "u h p s",
+            "answers":"push" 
+        },
+        {
+            
+            "questionText": "s e i w",
+            "answers":"wise" 
+        },
+        {
+            
+            "questionText": "a d g r",
+            "answers":"drag" 
         }
  
     ],
