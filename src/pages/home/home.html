@@ -1,57 +1,68 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title align="center">{{mode}}</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title align="center">{{mode}}</ion-title>
+        <ion-buttons left>
+      <ion-title end align="right" *ngIf="!score">Score <ion-badge color="secondary">{{score}}</ion-badge></ion-title>
+        <ion-title end align="right" *ngIf="score">Score <ion-badge color="secondary">{{score}}</ion-badge></ion-title>
+        </ion-buttons>
+        
+        <ion-buttons end>
+      <ion-title end align="right" *ngIf="timerVal"> <ion-badge color="danger">{{timerVal}}</ion-badge></ion-title>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
- 
+
     <ion-slides #slides>
- 
+
         <ion-slide class="start-slide">
-<!--            <button ion-button color="primary" (click)="nextSlide()">Start!</button>-->
+            <!--            <button ion-button color="primary" (click)="nextSlide()">Start!</button>-->
             <img src="assets/imgs/puzzle_pieces.png" width="20px" height="20px">
             <button ion-button color="primary" (click)="loadEasy()">Easy</button>
-            <button ion-button color="primary" (click)="loadMedium()">Medium</button>
-            <button ion-button color="primary" (click)="loadHard()">Hard</button>
+            <button ion-button color="primary" (click)="loadMedium()">Hard</button>
+            <!--            <button ion-button color="primary" (click)="loadHard()">Hard</button>-->
         </ion-slide>
         <ion-slide *ngFor="let question of questions; let i = index; trackBy:trackByIndex">
- 
+
             <h3>Question {{i+1}}</h3>
- 
-          <!--  <flash-card [isFlipped]="question.flashCardFlipped">
+
+            <!--  <flash-card [isFlipped]="question.flashCardFlipped">
                 <div class="flash-card-front" [innerHTML]="question.flashCardFront"></div>
                 <div class="flash-card-back" [innerHTML]="question.flashCardBack"></div>
             </flash-card>-->
- 
+
             <h1>{{question.questionText}}</h1>
-             <p>{{question.description}}</p>   
+            <p>{{question.description}}</p>
             <ion-list no-lines radio-group>
-                 <ion-item>   
-                <ion-label fixed color="light">Answer - </ion-label>
-                <ion-input type="text" [(ngModel)]="question.ans" minlength="4" (ionChange)=checkAnswer(question.ans,question)></ion-input>
+                <ion-item>
+                    <ion-label fixed color="light">Answer - </ion-label>
+                    <ion-input type="text" [(ngModel)]="question.ans" minlength="4" (ionChange)=checkAnswer(question.ans,question) [disabled]="hasAnswered"></ion-input>
                 </ion-item>
-                   
+
                 <!--<ion-item *ngFor="let answer of question.answers; let i = index;">
  
                     <ion-label>{{i+1}}. {{answer.answer}}</ion-label>
                     <ion-radio (click)="selectAnswer(answer, question)" [checked]="answer.selected" [disabled]="hasAnswered"></ion-radio>
  
                 </ion-item>-->
- 
+
+                <span *ngIf="checkStatus"><ion-icon name="thumbs-up"></ion-icon></span>
+                <span *ngIf="checkStatusError"><ion-icon name="thumbs-down"></ion-icon></span>
+                <br><br><span *ngIf="showAlert">{{AlertMessages}}</span>
             </ion-list>
- 
+
         </ion-slide>
-                      <ion-icon name="thumbs-up" *ngIf="checkStatus"></ion-icon>
-                      <ion-icon name="thumbs-down" *ngIf="checkStatusError"></ion-icon>
- 
+
         <ion-slide>
-            <h2>Final Score: {{score}}</h2>
- 
-            <button (click)="restartQuiz()" ion-button full color="primary">Start Again</button>
- 
+            <h2>Final Score: <ion-badge color="secondary">{{score}}</ion-badge></h2>
+
+<!--            <button (click)="restartQuiz()" ion-button full color="primary">Start Again</button>-->
+            <button ion-button color="primary" (click)="loadEasy()">Easy</button>
+            <button ion-button color="primary" (click)="loadMedium()">Hard</button>
+
         </ion-slide>
- 
+
     </ion-slides>
- 
+
 </ion-content>
