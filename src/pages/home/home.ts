@@ -19,9 +19,9 @@ export class HomePage {
  
     slideOptions: any;
     questions: any;
+    AlertMessages:any;
+    showAlert:any;
     mode:any;
- checkStatus:any;
-     checkStatusError:any;
     
   constructor(private http: Http, public navCtrl: NavController, public dataService: QuestionProvider,public loadingCtrl: LoadingController) {
       this.mode="Let's Play!"
@@ -30,21 +30,43 @@ export class HomePage {
     
         checkAnswer(answerVal,que) {
 //        this.range = newValue;
-        console.log(answerVal);
+        /*console.log(answerVal);
         console.log(que);
         console.log(que.answers);
-        console.log(answerVal);
+        console.log(answerVal);*/
+            if(que.answers.length==answerVal.length)
+                {
             if(que.answers==answerVal)
                 {
                     this.checkStatus=true;
+                    this.AlertMessages='BRAVO!!';
                     this.checkStatusError=false;
-//                    alert("Correct");
+                    // alert("Correct");
+                    this.showAlert=false;
+                    this.hasAnswered = true;
+                    this.selectAnswer();
+                    this.checkStatus=false;
                 }
             else
                 {
                     this.checkStatusError=true;
-                    this.checkStatus=true;
-//                    alert("wrong");
+                    this.checkStatus=false;
+                    this.showAlert=false;
+                    this.AlertMessages='Oops,Its a '+que.answers.length +' letter word only!';
+                    // alert("wrong");
+                }
+                }
+            else if(que.answers.length<answerVal.length)
+                {
+                    this.showAlert=true;
+                    this.checkStatus=false;
+                    this.checkStatusError=false;
+                }
+            else
+                {
+                    this.showAlert=false;
+                    this.checkStatus=false;
+                    this.checkStatusError=false;
                 }
             
 } 
@@ -68,6 +90,10 @@ export class HomePage {
     }*/
     
     loadEasy(){
+        this.score = 0;
+//        this.question.ans=[];
+        this.slides.lockSwipes(false);
+        this.slides.slideTo(0, 1000);
         this.slides.lockSwipes(true);
         let loading = this.loadingCtrl.create({
     content: 'Loading Easy Please Wait...'
@@ -81,21 +107,28 @@ export class HomePage {
                 return question;
  
             }); */   
- 
+            this.questions=[];
             this.questions = data.questions;
             this.mode=data.type;
             setTimeout(() => {
                 this.slides.lockSwipes(false);
         this.slides.slideNext();
         this.slides.lockSwipes(true);
+                this.maxtime=30;
+                this.stopTimer=this.questions.length;
+                this.StartTimer();
                 loading.dismiss();
                 }, 1000);
- 
+            
         });
     }
     
     
     loadMedium(){
+        this.score = 0;
+//        this.question.ans=[];
+        this.slides.lockSwipes(false);
+        this.slides.slideTo(0, 1000);
         this.slides.lockSwipes(true);
         let loading = this.loadingCtrl.create({
     content: 'Loading Medium Please Wait...'
@@ -107,13 +140,17 @@ export class HomePage {
                 question.answers = this.randomizeAnswers(originalOrder);
                 return question;
  
-            });*/    
+            });*/
+            this.questions=[];
             this.questions = data.questions;
             this.mode=data.type;
             setTimeout(() => {
                 this.slides.lockSwipes(false);
         this.slides.slideNext();
         this.slides.lockSwipes(true);
+                this.maxtime=30;
+                this.stopTimer=this.questions.length;
+                this.StartTimer();
                 loading.dismiss();
                 }, 1000);
  
@@ -158,22 +195,30 @@ export class HomePage {
     
 
  
-    selectAnswer(answer, question){
+    selectAnswer(){
  
-        this.hasAnswered = true;
-        answer.selected = true;
+        /*this.hasAnswered = true;
+        answer.selected = true;*/
         //question.flashCardFlipped = true;
  
-        if(answer.correct){
+        /*if(answer.correct){
             this.score++;
-        }
- 
-        setTimeout(() => {
+        }*/
+            this.score++;
+            this.maxtime=30;
+//            this.StartTimer();
+        console.log(this.questions.length);
+            /*if(this.stopTimer!=this.questions.length)
+                  {*/
+              this.stopTimer=this.stopTimer-1;
+//                  }
             this.hasAnswered = false;
             this.nextSlide();
+        
+        /*setTimeout(() => {
             answer.selected = false;
             question.flashCardFlipped = false;
-        }, 3000);
+        }, 3000);*/
     }
  
     randomizeAnswers(rawAnswers: any[]): any[] {
@@ -191,8 +236,43 @@ export class HomePage {
  
     restartQuiz() {
         this.score = 0;
+//        this.question.ans=[];
         this.slides.lockSwipes(false);
         this.slides.slideTo(1, 1000);
         this.slides.lockSwipes(true);
     }
+    maxtime: any=30;
+    timerVal:any;
+    stopTimer:any;
+  StartTimer(){
+    this.timer = setTimeout(x => 
+      {
+          if(this.maxtime <= 0) { }
+          this.maxtime -= 1;
+//            console.log(this.maxtime);
+            this.timerVal=this.maxtime;
+          if(this.maxtime>0){
+//            this.hidevalue = false;
+            console.log(this.stopTimer);
+              if(this.stopTimer!=0){
+            this.StartTimer();
+              }
+          }
+          
+          else{
+              this.maxtime=30;
+              this.hasAnswered = false;
+              this.nextSlide();
+              this.stopTimer=this.stopTimer-1;
+              if(this.stopTimer!=0){
+              this.StartTimer();
+              }
+//              this.hidevalue = true;
+          }
+
+      }, 1000);
+ 
+
+  }
+
 }
