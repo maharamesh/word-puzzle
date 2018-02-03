@@ -1,7 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 import { QuestionProvider } from '../../providers/question/question';
 import { LoadingController } from 'ionic-angular';
 //import 'rxjs/add/operator/map';
@@ -22,8 +19,10 @@ export class HomePage {
     AlertMessages:any;
     showAlert:any;
     mode:any;
+   checkStatus:any;
+   checkStatusError:any;
     
-  constructor(private http: Http, public navCtrl: NavController, public dataService: QuestionProvider,public loadingCtrl: LoadingController) {
+  constructor( public dataService: QuestionProvider,public loadingCtrl: LoadingController) {
       this.mode="Let's Play!"
      
   }
@@ -244,6 +243,7 @@ export class HomePage {
     maxtime: any=30;
     timerVal:any;
     stopTimer:any;
+   timer:any;
   StartTimer(){
     this.timer = setTimeout(x => 
       {
