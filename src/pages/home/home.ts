@@ -1,278 +1,255 @@
 import { Component, ViewChild } from '@angular/core';
-import { QuestionProvider } from '../../providers/question/question';
 import { LoadingController } from 'ionic-angular';
-//import 'rxjs/add/operator/map';
+import { Slides } from 'ionic-angular';
+import { QuestionProvider } from '../../providers/question/question';
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+    selector: 'page-home',
+    templateUrl: 'home.html'
 })
 
 export class HomePage {
-  
-  @ViewChild('slides') slides: any;
- 
+    @ViewChild(Slides) slides: Slides;
     hasAnswered: boolean = false;
     score: number = 0;
- 
     slideOptions: any;
-    questions: any;
-    AlertMessages:any;
-    showAlert:any;
-    mode:any;
-   checkStatus:any;
-   checkStatusError:any;
-    
-  constructor( public dataService: QuestionProvider,public loadingCtrl: LoadingController) {
-      this.mode="Let's Play!"
-     
-  }
-    
-        checkAnswer(answerVal,que) {
-//        this.range = newValue;
-        /*console.log(answerVal);
-        console.log(que);
-        console.log(que.answers);
-        console.log(answerVal);*/
-            if(que.answers.length==answerVal.length)
-                {
-            if(que.answers==answerVal)
-                {
-                    this.checkStatus=true;
-                    this.AlertMessages='BRAVO!!';
-                    this.checkStatusError=false;
-                    // alert("Correct");
-                    this.showAlert=false;
-                    this.hasAnswered = true;
-                    this.selectAnswer();
-                    this.checkStatus=false;
-                }
-            else
-                {
-                    this.checkStatusError=true;
-                    this.checkStatus=false;
-                    this.showAlert=false;
-                    this.AlertMessages='Oops,Its a '+que.answers.length +' letter word only!';
-                    // alert("wrong");
-                }
-                }
-            else if(que.answers.length<answerVal.length)
-                {
-                    this.showAlert=true;
-                    this.checkStatus=false;
-                    this.checkStatusError=false;
-                }
-            else
-                {
-                    this.showAlert=false;
-                    this.checkStatus=false;
-                    this.checkStatusError=false;
-                }
-            
-} 
- /*ionViewDidLoad() {
- 
+    questionsArray: any;
+    AlertMessages: any;
+    showAlert: any;
+    mode: any;
+    checkStatus: any;
+    checkStatusError: any;
+    constructor(public dataService: QuestionProvider, public loadingCtrl: LoadingController) {
+        this.mode = "Let's Play!"
+
+    }
+    checkAnswer(answerVal, que) {
+        if (que.answers.length == answerVal.length) {
+            if (que.answers == answerVal) {
+                this.checkStatus = true;
+                this.AlertMessages = 'BRAVO!!';
+                this.checkStatusError = false;
+                // alert("Correct");
+                this.showAlert = false;
+                this.hasAnswered = true;
+                this.selectAnswer();
+                this.checkStatus = false;
+            }
+            else {
+                this.checkStatusError = true;
+                this.checkStatus = false;
+                this.showAlert = false;
+                this.AlertMessages = 'Oops,Its a ' + que.answers.length + ' letter word only!';
+            }
+        }
+        else if (que.answers.length < answerVal.length) {
+            this.showAlert = true;
+            this.checkStatus = false;
+            this.checkStatusError = false;
+        }
+        else {
+            this.showAlert = false;
+            this.checkStatus = false;
+            this.checkStatusError = false;
+        }
+
+    }
+    ionViewDidLoad() {
+
         this.slides.lockSwipes(true);
- 
-        this.dataService.load().then((data) => {
-            data.map((question) => {
- 
-                let originalOrder = question.answers;
-                question.answers = this.randomizeAnswers(originalOrder);
-                return question;
- 
-            });    
- 
-            this.questions = data;
- 
-        });
- 
-    }*/
-    
-    loadEasy(){
+
+    }
+
+
+
+    loadEasy() {
         this.score = 0;
-//        this.question.ans=[];
         this.slides.lockSwipes(false);
         this.slides.slideTo(0, 1000);
         this.slides.lockSwipes(true);
+        this.slides.update();
+        if (this.questionsArray) {
+            for (let i = 0; this.questionsArray.length > i; i++) {
+                this.questionsArray[i].ans = "";
+            }
+        }
         let loading = this.loadingCtrl.create({
-    content: 'Loading Easy Please Wait...'
-  });
+            content: 'Loading Easy Please Wait...'
+        });
         loading.present();
-        this.dataService.fetchEasy().then((data) => {
-            /*data.map((question) => {
- 
-                let originalOrder = question.answers;
-                question.answers = this.randomizeAnswers(originalOrder);
-                return question;
- 
-            }); */   
-            this.questions=[];
-            this.questions = data.questions;
-            this.mode=data.type;
-            setTimeout(() => {
+        setTimeout(() => {
+            this.dataService.fetchEasy().then((data) => {
+                console.log(data);
+                this.questionsArray = data.questions;
+                data.questions.map((question) => {
+                    let originalOrder = this.questionsArray;
+                    question = this.randomizeAnswers(originalOrder);
+                    return question;
+
+                });
+                this.mode = data.type;
                 this.slides.lockSwipes(false);
-        this.slides.slideNext();
-        this.slides.lockSwipes(true);
-                this.maxtime=30;
-                this.stopTimer=this.questions.length;
+                this.slides.slideNext();
+                this.slides.lockSwipes(true);
+                this.maxtime = 30;
+                this.stopTimer = this.questionsArray.length;
                 this.StartTimer();
                 loading.dismiss();
-                }, 1000);
-            
-        });
+
+            }).catch((error) => {
+                alert("Error infetching Easy");
+                console.log(error);
+                loading.dismiss();
+            });
+        }, 1500);
     }
-    
-    
-    loadMedium(){
+
+
+
+    loadMedium() {
         this.score = 0;
-//        this.question.ans=[];
         this.slides.lockSwipes(false);
         this.slides.slideTo(0, 1000);
         this.slides.lockSwipes(true);
+        this.slides.update();
+        if (this.questionsArray) {
+            for (let i = 0; this.questionsArray.length > i; i++) {
+                this.questionsArray[i].ans = "";
+            }
+        }
         let loading = this.loadingCtrl.create({
-    content: 'Loading Medium Please Wait...'
-  });
+            content: 'Loading Hard Please Wait...'
+        });
         loading.present();
-        this.dataService.fetchMedium().then((data) => {
-           /* data.map((question) => {
-                let originalOrder = question.answers;
-                question.answers = this.randomizeAnswers(originalOrder);
-                return question;
- 
-            });*/
-            this.questions=[];
-            this.questions = data.questions;
-            this.mode=data.type;
-            setTimeout(() => {
+        setTimeout(() => {
+            this.dataService.fetchMedium().then((data) => {
+                console.log(data);
+                this.questionsArray = data.questions;
+                data.questions.map((question) => {
+                    let originalOrder = this.questionsArray;
+                    question = this.randomizeAnswers(originalOrder);
+                    return question;
+                });
+                this.mode = data.type;
                 this.slides.lockSwipes(false);
-        this.slides.slideNext();
-        this.slides.lockSwipes(true);
-                this.maxtime=30;
-                this.stopTimer=this.questions.length;
+                this.slides.slideNext();
+                this.slides.lockSwipes(true);
+                this.maxtime = 30;
+                this.stopTimer = this.questionsArray.length;
                 this.StartTimer();
                 loading.dismiss();
-                }, 1000);
- 
-        }).catch((error)=>{
-            alert("Error infetching Medium");
-            console.log(error);
-        });
+
+            }).catch((error) => {
+                alert("Error infetching Hard");
+                console.log(error);
+                loading.dismiss();
+            });
+        }, 1000);
     }
-    
-    loadHard(){
+
+    /*loadHard(){
         this.slides.lockSwipes(true);
         let loading = this.loadingCtrl.create({
     content: 'Loading Hard Please Wait...'
   });
         loading.present();
-        this.dataService.fetchHard().then((data) => {
-            /*data.map((question) => {
- 
-                let originalOrder = question.answers;
-                question.answers = this.randomizeAnswers(originalOrder);
-                return question;
- 
-            });    */
- 
-            this.questions = data.questions;
-            this.mode=data.type;
+//        this.questionsArray=[];
             setTimeout(() => {
+        this.dataService.fetchHard().then((data) => {
+            data.questions.map((question) => {
+             this.questionsArray = data.questions;
+                let originalOrder = this.questionsArray;
+                console.log(originalOrder);
+                question = this.randomizeAnswers(originalOrder);
+                console.log(question);
+                return question;
+            });
+ 
+            this.questionsArray = data.questions;
+            this.mode=data.type;
                 this.slides.lockSwipes(false);
         this.slides.slideNext();
         this.slides.lockSwipes(true);
                 loading.dismiss();
-                }, 1000);
  
         });
-    }
- 
-    nextSlide(){
+                }, 1000);
+    }*/
+
+    nextSlide() {
         this.slides.lockSwipes(false);
         this.slides.slideNext();
         this.slides.lockSwipes(true);
     }
-    
 
- 
-    selectAnswer(){
- 
-        /*this.hasAnswered = true;
-        answer.selected = true;*/
-        //question.flashCardFlipped = true;
- 
-        /*if(answer.correct){
-            this.score++;
-        }*/
-            this.score++;
-            this.maxtime=30;
-//            this.StartTimer();
-        console.log(this.questions.length);
-            /*if(this.stopTimer!=this.questions.length)
-                  {*/
-              this.stopTimer=this.stopTimer-1;
-//                  }
-            this.hasAnswered = false;
-            this.nextSlide();
-        
-        /*setTimeout(() => {
-            answer.selected = false;
-            question.flashCardFlipped = false;
-        }, 3000);*/
+
+
+    selectAnswer() {
+        this.score++;
+        this.maxtime = 30;
+        console.log(this.questionsArray.length);
+        this.stopTimer = this.stopTimer - 1;
+        this.hasAnswered = false;
+        this.nextSlide();
     }
- 
+
     randomizeAnswers(rawAnswers: any[]): any[] {
- 
+
         for (let i = rawAnswers.length - 1; i > 0; i--) {
             let j = Math.floor(Math.random() * (i + 1));
             let temp = rawAnswers[i];
             rawAnswers[i] = rawAnswers[j];
             rawAnswers[j] = temp;
         }
- 
+
         return rawAnswers;
- 
+
     }
- 
+
     restartQuiz() {
         this.score = 0;
-//        this.question.ans=[];
+        this.stopTimer = 0;
+        this.timerVal = 0;
         this.slides.lockSwipes(false);
-        this.slides.slideTo(1, 1000);
+        this.slides.slideTo(0, 1000);
         this.slides.lockSwipes(true);
     }
-    maxtime: any=30;
-    timerVal:any;
-    stopTimer:any;
-   timer:any;
-  StartTimer(){
-    this.timer = setTimeout(x => 
-      {
-          if(this.maxtime <= 0) { }
-          this.maxtime -= 1;
-//            console.log(this.maxtime);
-            this.timerVal=this.maxtime;
-          if(this.maxtime>0){
-//            this.hidevalue = false;
-            console.log(this.stopTimer);
-              if(this.stopTimer!=0){
-            this.StartTimer();
-              }
-          }
-          
-          else{
-              this.maxtime=30;
-              this.hasAnswered = false;
-              this.nextSlide();
-              this.stopTimer=this.stopTimer-1;
-              if(this.stopTimer!=0){
-              this.StartTimer();
-              }
-//              this.hidevalue = true;
-          }
 
-      }, 1000);
- 
+    goHome() {
+        this.score = 0;
+        this.stopTimer = 0;
+        this.timerVal = 0;
+        this.slides.lockSwipes(false);
+        this.slides.slideTo(0, 1000);
+        this.slides.lockSwipes(true);
+    }
+    maxtime: any = 30;
+    timerVal: any;
+    stopTimer: any;
+    timer: any;
+    StartTimer() {
+        this.timer = setTimeout(x => {
+            if (this.maxtime <= 0) { }
+            this.maxtime -= 1;
+            this.timerVal = this.maxtime;
+            if (this.maxtime > 0) {
+                if (this.stopTimer != 0) {
+                    this.StartTimer();
+                }
+            }
 
-  }
+            else {
+                this.maxtime = 30;
+                this.hasAnswered = false;
+                this.nextSlide();
+                this.stopTimer = this.stopTimer - 1;
+                if (this.stopTimer != 0) {
+                    this.StartTimer();
+                }
+            }
+
+        }, 1000);
+
+
+    }
 
 }
