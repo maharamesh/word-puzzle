@@ -2,67 +2,62 @@
     <ion-navbar>
         <ion-title align="center">{{mode}}</ion-title>
         <ion-buttons left>
-      <ion-title end align="right" *ngIf="!score">Score <ion-badge color="secondary">{{score}}</ion-badge></ion-title>
-        <ion-title end align="right" *ngIf="score">Score <ion-badge color="secondary">{{score}}</ion-badge></ion-title>
+            <ion-title end align="right" *ngIf="!score">Score
+                <ion-badge color="secondary">{{score}}</ion-badge>
+            </ion-title>
+            <ion-title end align="right" *ngIf="score">Score
+                <ion-badge color="secondary">{{score}}</ion-badge>
+            </ion-title>
         </ion-buttons>
-        
         <ion-buttons end>
-      <ion-title end align="right" *ngIf="timerVal"> <ion-badge color="danger">{{timerVal}}</ion-badge></ion-title>
+            <ion-title end align="right" *ngIf="timerVal">
+                <ion-badge color="danger">{{timerVal}}</ion-badge>
+            </ion-title>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
-
 <ion-content>
-
-    <ion-slides #slides>
-
+    <ion-slides>
         <ion-slide class="start-slide">
-            <!--            <button ion-button color="primary" (click)="nextSlide()">Start!</button>-->
-            <img src="assets/imgs/puzzle_pieces.png" width="20px" height="20px">
+            <img src="assets/imgs/puz-logo.png" width="20px" height="20px">
+            <br>
             <button ion-button color="primary" (click)="loadEasy()">Easy</button>
             <button ion-button color="primary" (click)="loadMedium()">Hard</button>
-            <!--            <button ion-button color="primary" (click)="loadHard()">Hard</button>-->
         </ion-slide>
-        <ion-slide *ngFor="let question of questions; let i = index; trackBy:trackByIndex">
-
-            <h3>Question {{i+1}}</h3>
-
-            <!--  <flash-card [isFlipped]="question.flashCardFlipped">
-                <div class="flash-card-front" [innerHTML]="question.flashCardFront"></div>
-                <div class="flash-card-back" [innerHTML]="question.flashCardBack"></div>
-            </flash-card>-->
-
+        <ion-slide *ngFor="let question of questionsArray; let i = index;trackBy:trackByIndex" class="start-slide">
+            <ion-badge color="danger">{{timerVal}}</ion-badge>
+            <h3>
+                <ion-badge color="secondary">Question {{i+1}}</ion-badge>
+            </h3>
             <h1>{{question.questionText}}</h1>
             <p>{{question.description}}</p>
-            <ion-list no-lines radio-group>
-                <ion-item>
-                    <ion-label fixed color="light">Answer - </ion-label>
-                    <ion-input type="text" [(ngModel)]="question.ans" minlength="4" (ionChange)=checkAnswer(question.ans,question) [disabled]="hasAnswered"></ion-input>
-                </ion-item>
-
-                <!--<ion-item *ngFor="let answer of question.answers; let i = index;">
- 
-                    <ion-label>{{i+1}}. {{answer.answer}}</ion-label>
-                    <ion-radio (click)="selectAnswer(answer, question)" [checked]="answer.selected" [disabled]="hasAnswered"></ion-radio>
- 
-                </ion-item>-->
-
-                <span *ngIf="checkStatus"><ion-icon name="thumbs-up"></ion-icon></span>
-                <span *ngIf="checkStatusError"><ion-icon name="thumbs-down"></ion-icon></span>
-                <br><br><span *ngIf="showAlert">{{AlertMessages}}</span>
-            </ion-list>
-
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="question.ans" (ngModelChange)="question.ans = $event.toLocaleLowerCase()" (ionChange)="checkAnswer(question.ans,question)"
+                    [disabled]="hasAnswered"></ion-input>
+            </ion-item>
+            <span *ngIf="checkStatus">
+                <ion-icon name="thumbs-up"></ion-icon>
+            </span>
+            <span *ngIf="checkStatusError">
+                <ion-icon name="thumbs-down"></ion-icon>
+            </span>
+            <span *ngIf="showAlert">{{AlertMessages}}</span>
+            <br>
+            <button (click)="restartQuiz()" ion-button color="default">Stop ?</button>
         </ion-slide>
-
-        <ion-slide>
-            <h2>Final Score: <ion-badge color="secondary">{{score}}</ion-badge></h2>
-
-<!--            <button (click)="restartQuiz()" ion-button full color="primary">Start Again</button>-->
+        <ion-slide class="start-slide">
+            <h2>Final Score:
+                <ion-badge color="secondary">{{score}}</ion-badge>
+            </h2>
+            <br>
+            <br>
+            <p>Start Again ?</p>
+            <!--        <button (click)="restartQuiz()" ion-button color="default">Start Again ?</button>-->
             <button ion-button color="primary" (click)="loadEasy()">Easy</button>
             <button ion-button color="primary" (click)="loadMedium()">Hard</button>
-
+            <br>
+            <button ion-button color="primary" (click)="goHome()">HOME</button>
         </ion-slide>
-
     </ion-slides>
 
 </ion-content>

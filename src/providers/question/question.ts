@@ -10,59 +10,59 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class QuestionProvider {
-data: any;
-  constructor( public http: Http) {
-    console.log('Hello QuestionProvider Provider');
-  }
-    fetchEasy(){
- 
-        if(this.data){
+    data: any;
+    constructor(public http: Http) {
+    }
+    fetchEasy() {
+        this.data = '';
+        if (this.data) {
             return Promise.resolve(this.data);
         }
- 
         return new Promise(resolve => {
- 
+
+            this.data = [];
             this.http.get('assets/data/easy.json').map(res => res.json()).subscribe(data => {
+                console.log(data);
                 this.data = data;
                 resolve(this.data);
             });
- 
+
         });
- 
+
     }
-    
-    fetchMedium(){
- 
-        if(this.data){
+
+    fetchMedium() {
+        this.data = '';
+        if (this.data) {
             return Promise.resolve(this.data);
         }
- 
         return new Promise(resolve => {
- 
+
+            this.data = [];
             this.http.get('assets/data/medium.json').map(res => res.json()).subscribe(data => {
+                console.log(data);
                 this.data = data;
                 resolve(this.data);
             });
- 
+
         });
- 
+
     }
-    
-    
- fetchHard(){
- 
-        if(this.data){
-            return Promise.resolve(this.data);
-        }
- 
+
+
+    fetchHard() {
+        /*    if(this.data){
+                    return Promise.resolve(this.data);
+                }*/
+
         return new Promise(resolve => {
- 
+
             this.http.get('assets/data/hard.json').map(res => res.json()).subscribe(data => {
                 this.data = data;
                 resolve(this.data);
             });
- 
+
         });
- 
+
     }
 }

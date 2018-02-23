@@ -2,57 +2,77 @@
     "questions": [
 
         {
-            "questionText": "Csoloh"
-            , "description": "A place to study!"
-            , "answers": "school"
+            "questionText": "Csoloh",
+            "description": "A place to study!",
+            "answers": "school",
+            "ans":"",
+            "id":0
         }
         , {
-            "questionText": "Aerk"
-            , "description": "A cleaning tool"
-            , "answers": "rake"
+            "questionText": "Aerk",
+            "description": "A cleaning tool",
+            "answers": "rake",
+            "ans":"",
+            "id":1
         }
         , {
-            "questionText": "Feriaergotrr"
-            , "description": "An household appliance"
-            , "answers": "refrigerator"
+            "questionText": "Feriaergotrr",
+            "description": "An household appliance",
+            "answers": "refrigerator",
+            "ans":"",
+            "id":2
         }
         , {
-            "questionText": "Hpneoeelt"
-            , "description": "Connecting people"
-            , "answers": "telephone"
+            "questionText": "Hpneoeelt",
+            "description": "Connecting people",
+            "answers": "telephone",
+            "ans":"",
+            "id":3
         }
         , {
-            "questionText": "Appre"
-            , "description": "Something to write"
-            , "answers": "paper"
+            "questionText": "Appre",
+            "description": "Something to write",
+            "answers": "paper",
+            "ans":"",
+            "id":4
         }
         , {
-            "questionText": "Uhbsr"
-            , "description": "rub it to clean it"
-            , "answers": "brush"
+            "questionText": "Uhbsr",
+            "description": "rub it to clean it",
+            "answers": "brush",
+            "ans":"",
+            "id":5
          }
         , {
-            "questionText": "Amigicna"
-            , "description": "A person with superior powers"
-            , "answers": "magician"
+            "questionText": "Amigicna",
+            "description": "A person with superior powers",
+            "answers": "magician",
+            "ans":"",
+            "id":6
          }
         , {
-            "questionText": "Soiphalt"
-            , "description": "a place for treatment"
-            , "answers": "hospital"
+            "questionText": "Soiphalt",
+            "description": "a place for treatment",
+            "answers": "hospital",
+            "ans":"",
+            "id":7
         }
         , {
-            "questionText": "Crkut"
-            , "description": "used for carrying goods"
-            , "answers": "truck"
+            "questionText": "Crkut",
+            "description": "used for carrying goods",
+            "answers": "truck",
+            "ans":"",
+            "id":8
         }
         , {
-            "questionText": "Macle"
-            , "description": "An animal"
-            , "answers": "camel"
+            "questionText": "Macle",
+            "description": "An animal",
+            "answers": "camel",
+            "ans":"",
+            "id":9
         }
 
 
-    ]
-    , "type": "Easy"
+    ],
+    "type": "Easy"
 }
