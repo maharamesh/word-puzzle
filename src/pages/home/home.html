@@ -2,15 +2,12 @@
     <ion-navbar>
         <ion-title align="center">{{mode}}</ion-title>
         <ion-buttons left>
-            <ion-title end align="right" *ngIf="!score">Score
-                <ion-badge color="secondary">{{score}}</ion-badge>
-            </ion-title>
-            <ion-title end align="right" *ngIf="score">Score
+            <ion-title *ngIf="score!=0">Score
                 <ion-badge color="secondary">{{score}}</ion-badge>
             </ion-title>
         </ion-buttons>
         <ion-buttons end>
-            <ion-title end align="right" *ngIf="timerVal">
+            <ion-title end align="right" *ngIf="timerVal!=0">
                 <ion-badge color="danger">{{timerVal}}</ion-badge>
             </ion-title>
         </ion-buttons>
@@ -25,12 +22,13 @@
             <button ion-button color="primary" (click)="loadMedium()">Hard</button>
         </ion-slide>
         <ion-slide *ngFor="let question of questionsArray; let i = index;trackBy:trackByIndex" class="start-slide">
-            <ion-badge color="danger">{{timerVal}}</ion-badge>
-            <h3>
-                <ion-badge color="secondary">Question {{i+1}}</ion-badge>
-            </h3>
-            <h1>{{question.questionText}}</h1>
-            <p>{{question.description}}</p>
+            <!-- <ion-badge color="danger">{{timerVal}}</ion-badge> -->
+            <ion-card color="dark">
+                    <ion-card-header>
+                <h1>{{i+1}}. {{question.questionText}}</h1>
+                <p *ngIf="question.description">({{question.description}})</p>
+                </ion-card-header>
+            </ion-card>
             <ion-item>
                 <ion-input type="text" [(ngModel)]="question.ans" (ngModelChange)="question.ans = $event.toLocaleLowerCase()" (ionChange)="checkAnswer(question.ans,question)"
                     [disabled]="hasAnswered"></ion-input>

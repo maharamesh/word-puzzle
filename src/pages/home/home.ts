@@ -10,7 +10,7 @@ import { QuestionProvider } from '../../providers/question/question';
 export class HomePage {
     @ViewChild(Slides) slides: Slides;
     hasAnswered: boolean = false;
-    score: number = 0;
+    score: number;
     slideOptions: any;
     questionsArray: any;
     AlertMessages: any;
@@ -19,9 +19,15 @@ export class HomePage {
     checkStatus: any;
     checkStatusError: any;
     constructor(public dataService: QuestionProvider, public loadingCtrl: LoadingController) {
-        this.mode = "Let's Play!"
-
+        this.loadInit();
     }
+
+    loadInit() {
+        this.mode = "Let's Play!";
+        this.score = 0;
+        this.timerVal = 0;
+    }
+
     checkAnswer(answerVal, que) {
         if (que.answers.length == answerVal.length) {
             if (que.answers == answerVal) {
@@ -207,8 +213,9 @@ export class HomePage {
 
     restartQuiz() {
         this.score = 0;
+        //        this.timerVal = 0;
+        this.loadInit();
         this.stopTimer = 0;
-        this.timerVal = 0;
         this.slides.lockSwipes(false);
         this.slides.slideTo(0, 1000);
         this.slides.lockSwipes(true);
@@ -223,7 +230,7 @@ export class HomePage {
         this.slides.lockSwipes(true);
     }
     maxtime: any = 30;
-    timerVal: any;
+    timerVal: number;
     stopTimer: any;
     timer: any;
     StartTimer() {
@@ -235,6 +242,9 @@ export class HomePage {
                 if (this.stopTimer != 0) {
                     this.StartTimer();
                 }
+                else {
+                    this.timerVal = 0;
+                }
             }
 
             else {
@@ -244,6 +254,9 @@ export class HomePage {
                 this.stopTimer = this.stopTimer - 1;
                 if (this.stopTimer != 0) {
                     this.StartTimer();
+                }
+                else {
+                    this.timerVal = 0;
                 }
             }
 
