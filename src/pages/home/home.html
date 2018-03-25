@@ -13,25 +13,24 @@
         </ion-buttons>
     </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content class="background">
     <ion-slides>
         <ion-slide class="start-slide">
-            <img src="assets/imgs/puz-logo.png" width="20px" height="20px">
+            <img src="assets/imgs/download.png" width="20px" height="40px" style="margin-left:9px">
             <br>
             <button ion-button color="primary" (click)="loadEasy()">Easy</button>
             <button ion-button color="primary" (click)="loadMedium()">Hard</button>
         </ion-slide>
         <ion-slide *ngFor="let question of questionsArray; let i = index;trackBy:trackByIndex" class="start-slide">
-            <!-- <ion-badge color="danger">{{timerVal}}</ion-badge> -->
-            <ion-card color="dark">
-                    <ion-card-header>
-                <h1>{{i+1}}. {{question.questionText}}</h1>
-                <p *ngIf="question.description">({{question.description}})</p>
-                </ion-card-header>
-            </ion-card>
+         <!--   <ion-badge color="danger">{{timerVal}}</ion-badge>-->
+            <h3>
+                <ion-badge color="secondary">Question {{i+1}}</ion-badge>
+            </h3>
+            <h1 style="color:black; font-display: block">{{question.questionText}}</h1>
+            <p style="color:black">Hint: {{question.description}}</p>
             <ion-item>
-                <ion-input type="text" [(ngModel)]="question.ans" (ngModelChange)="question.ans = $event.toLocaleLowerCase()" (ionChange)="checkAnswer(question.ans,question)"
-                    [disabled]="hasAnswered"></ion-input>
+               <ion-input type="text" [(ngModel)]="question.ans" (ngModelChange)="question.ans = $event.toLocaleLowerCase()" (ionChange)="checkAnswer(question.ans,question)"
+                    [disabled]="hasAnswered" style="background-color: transparent"></ion-input>
             </ion-item>
             <span *ngIf="checkStatus">
                 <ion-icon name="thumbs-up"></ion-icon>
