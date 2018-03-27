@@ -225,6 +225,7 @@ export class HomePage {
         this.score = 0;
         this.stopTimer = 0;
         this.timerVal = 0;
+        this.loadInit();
         this.slides.lockSwipes(false);
         this.slides.slideTo(0, 1000);
         this.slides.lockSwipes(true);
