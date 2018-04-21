@@ -22,7 +22,7 @@ export class QuestionProvider {
 
             this.data = [];
             this.http.get('assets/data/easy.json').map(res => res.json()).subscribe(data => {
-                console.log(data);
+               // console.log(data);
                 this.data = data;
                 resolve(this.data);
             });
@@ -40,7 +40,7 @@ export class QuestionProvider {
 
             this.data = [];
             this.http.get('assets/data/medium.json').map(res => res.json()).subscribe(data => {
-                console.log(data);
+               // console.log(data);
                 this.data = data;
                 resolve(this.data);
             });
@@ -65,4 +65,6 @@ export class QuestionProvider {
         });
 
     }
+    
+
 }
