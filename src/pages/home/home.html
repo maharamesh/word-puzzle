@@ -37,7 +37,7 @@
             </ion-chip> -->
             <!-- <p style="color:black">Hint: {{question.description}}</p> -->
 
-            <ion-chip>
+            <ion-chip *ngIf="question.description">
                 <ion-icon name="ios-help-circle-outline" color="secondary"></ion-icon>
                 <ion-label>{{question.description}}</ion-label>
             </ion-chip>

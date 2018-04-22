@@ -29,6 +29,8 @@ export class HomePage {
     }
 
     checkAnswer(answerVal, que) {
+        // console.log(answerVal);
+        // console.log(que);
         if (que.answers.length == answerVal.length) {
             if (que.answers == answerVal) {
                 this.checkStatus = true;
@@ -79,12 +81,14 @@ export class HomePage {
             }
         }
         let loading = this.loadingCtrl.create({
-            content: 'Loading Easy Please Wait...'
+            spinner: "dots",
+            content: `Loading Easy Please Wait...`,
+            showBackdrop: false
         });
         loading.present();
         setTimeout(() => {
             this.dataService.fetchEasy().then((data) => {
-                console.log(data);
+                //console.log(data);
                 this.questionsArray = data.questions;
                 data.questions.map((question) => {
                     let originalOrder = this.questionsArray;
@@ -103,7 +107,7 @@ export class HomePage {
 
             }).catch((error) => {
                 alert("Error infetching Easy");
-                console.log(error);
+                // console.log(error);
                 loading.dismiss();
             });
         }, 1500);
@@ -128,7 +132,7 @@ export class HomePage {
         loading.present();
         setTimeout(() => {
             this.dataService.fetchMedium().then((data) => {
-                console.log(data);
+                // console.log(data);
                 this.questionsArray = data.questions;
                 data.questions.map((question) => {
                     let originalOrder = this.questionsArray;
@@ -146,7 +150,7 @@ export class HomePage {
 
             }).catch((error) => {
                 alert("Error infetching Hard");
-                console.log(error);
+                // console.log(error);
                 loading.dismiss();
             });
         }, 1000);
@@ -192,7 +196,7 @@ export class HomePage {
     selectAnswer() {
         this.score++;
         this.maxtime = 30;
-        console.log(this.questionsArray.length);
+       // console.log(this.questionsArray.length);
         this.stopTimer = this.stopTimer - 1;
         this.hasAnswered = false;
         this.nextSlide();
