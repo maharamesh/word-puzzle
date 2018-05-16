@@ -16,7 +16,7 @@
 <ion-content class="background">
     <ion-slides>
         <ion-slide class="start-slide">
-            <img src="assets/imgs/download.png" width="20px" height="40px" style="margin-left:9px">
+            <img src="assets/imgs/puz-logo.png" width="20px" height="40px" style="margin-left:9px">
             <br>
             <button ion-button color="primary" (click)="loadEasy()">Easy</button>
             <button ion-button color="primary" (click)="loadMedium()">Hard</button>
@@ -26,9 +26,19 @@
             <!-- <h3>
                 <ion-badge color="secondary">Question {{i+1}}</ion-badge>
             </h3> -->
-            <ion-badge>
-                <h1 color="secondary">{{question.questionText}}</h1>
+            <ion-chip *ngIf="keyboardEvent" color="dark">
+                    <ion-icon name="md-information-circle" color="secondary"></ion-icon>
+                    <ion-label>Find the below word ?</ion-label>
+            </ion-chip><br>
+            <ion-badge color="cust-badge" style="border-radius: 20px">
+                <h1 color="light">{{question.questionText | lowercase}}</h1>
+                <ion-chip color="light" *ngIf="question.description">
+                        <ion-icon name="ios-help-circle-outline" color="secondary"></ion-icon>
+                        <ion-label>{{question.description}}</ion-label>
+                    </ion-chip>
             </ion-badge>
+            <br>
+            <br>
             <br>
             <!-- <ion-chip>
                 
@@ -36,14 +46,9 @@
                 <ion-label>{{question.questionText}}</ion-label>
             </ion-chip> -->
             <!-- <p style="color:black">Hint: {{question.description}}</p> -->
-
-            <ion-chip *ngIf="question.description">
-                <ion-icon name="ios-help-circle-outline" color="secondary"></ion-icon>
-                <ion-label>{{question.description}}</ion-label>
-            </ion-chip>
             <ion-item>
-                <ion-input type="text" [(ngModel)]="question.ans" (ngModelChange)="question.ans = $event.toLocaleLowerCase()" (ionChange)="checkAnswer(question.ans,question)"
-                    [disabled]="hasAnswered" style="background-color: transparent"></ion-input>
+                <ion-input type="text" [(ngModel)]="question.ans" placeholder="Please enter your answer..." (ngModelChange)="question.ans = $event.toLocaleLowerCase()"
+                    (ionChange)="checkAnswer(question.ans,question)" [disabled]="hasAnswered" style="background-color: transparent"></ion-input>
                 <!-- <ion-grid>
                 <ion-row>
                     <ion-col col-12>
@@ -62,7 +67,7 @@
             </span>
             <span *ngIf="showAlert">{{AlertMessages}}</span>
             <br>
-            <button (click)="restartQuiz()" ion-button color="default">Stop ?</button>
+            <button *ngIf="keyboardEvent" (click)="restartQuiz()" ion-button color="default">Stop ?</button>
         </ion-slide>
         <ion-slide class="start-slide">
             <h2>Final Score:

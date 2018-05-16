@@ -19,7 +19,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       splashScreen.hide();
-      statusBar.styleDefault();
+      statusBar.styleLightContent();
+      // statusBar.overlaysWebView(true);
       key.disableScroll(true);
       timer(3000).subscribe(() => this.showSplash = false) // <-- hide animation after 3s
 
