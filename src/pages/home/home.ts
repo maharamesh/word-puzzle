@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { LoadingController } from 'ionic-angular';
 import { Slides } from 'ionic-angular';
 import { QuestionProvider } from '../../providers/question/question';
+import { Keyboard } from '@ionic-native/keyboard';
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
@@ -18,29 +19,41 @@ export class HomePage {
     mode: any;
     checkStatus: any;
     checkStatusError: any;
-    constructor(public dataService: QuestionProvider, public loadingCtrl: LoadingController) {
+    keyboardEvent:any;
+
+    constructor(public dataService: QuestionProvider, public loadingCtrl: LoadingController, public key: Keyboard) {
         this.loadInit();
     }
-
     loadInit() {
         this.mode = "Let's Play!";
         this.score = 0;
         this.timerVal = 0;
-    }
+        this.keyboardEvent=true;
+        
+        this.key.onKeyboardShow().subscribe(() => {
+            console.log("onKeyboardShow");
+            this.keyboardEvent=false;
+         });
+         this.key.onKeyboardHide().subscribe(() => {
+            console.log("onKeyboardShow");
+            this.keyboardEvent=true;
+         });
 
+    }
+    
     checkAnswer(answerVal, que) {
         // console.log(answerVal);
         // console.log(que);
+        this.keyboardEvent=false;
         if (que.answers.length == answerVal.length) {
             if (que.answers == answerVal) {
                 this.checkStatus = true;
                 this.AlertMessages = 'BRAVO!!';
                 this.checkStatusError = false;
-                // alert("Correct");
+                this.key.close();
                 this.showAlert = false;
                 this.hasAnswered = true;
                 this.selectAnswer();
-                this.checkStatus = false;
             }
             else {
                 this.checkStatusError = true;
@@ -81,7 +94,7 @@ export class HomePage {
             }
         }
         let loading = this.loadingCtrl.create({
-            spinner: "dots",
+            spinner: "crescent",
             content: `Loading Easy Please Wait...`,
             showBackdrop: false
         });
@@ -103,6 +116,7 @@ export class HomePage {
                 this.maxtime = 30;
                 this.stopTimer = this.questionsArray.length;
                 this.StartTimer();
+                this.keyboardEvent=true;
                 loading.dismiss();
 
             }).catch((error) => {
@@ -127,7 +141,9 @@ export class HomePage {
             }
         }
         let loading = this.loadingCtrl.create({
-            content: 'Loading Hard Please Wait...'
+            spinner: "crescent",
+            content: 'Loading Hard Please Wait...',
+            showBackdrop: false
         });
         loading.present();
         setTimeout(() => {
@@ -146,6 +162,7 @@ export class HomePage {
                 this.maxtime = 30;
                 this.stopTimer = this.questionsArray.length;
                 this.StartTimer();
+                this.keyboardEvent=true;
                 loading.dismiss();
 
             }).catch((error) => {
@@ -200,6 +217,7 @@ export class HomePage {
         this.stopTimer = this.stopTimer - 1;
         this.hasAnswered = false;
         this.nextSlide();
+        // this.keyboardEvent=true;
     }
 
     randomizeAnswers(rawAnswers: any[]): any[] {
